@@ -17,7 +17,7 @@ import 'models.dart';
 /// [FeedEnclosure]: url, length, type
 Feed parse(String feedString, {bool strict = false}) {
   try {
-    xml.XmlDocument document = xml.parse(feedString);
+    xml.XmlDocument document = xml.XmlDocument.parse(feedString);
 
     xml.XmlElement channelElement =
         document.rootElement.findElements('channel').single;

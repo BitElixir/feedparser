@@ -2,16 +2,16 @@ import 'package:test/test.dart';
 import 'package:feedparser/feedparser.dart';
 
 void main() {
-  test('Empty string throws ArgumentError', () {
-    expect(() => parse(''), throwsArgumentError);
+  test('Empty string throws FormatException', () {
+    expect(() => parse(''), throwsFormatException);
   });
 
-  test('Malformed XML throws ArgumentError', () {
+  test('Malformed XML throws FormatException', () {
     String malformedXML = ''''<?xml version="1.0" encoding="UTF-8"?>
     <rss version="2.0">
     <''';
 
-    expect(() => parse(malformedXML), throwsArgumentError);
+    expect(() => parse(malformedXML), throwsFormatException);
   });
 
   group('Strict mode', () {
@@ -29,7 +29,7 @@ void main() {
       expect(() => parse(data, strict: true), throwsArgumentError);
     });
 
-    test('Throws ArgumentError if channel description missing', () {
+    test('Throws FormatException if channel description missing', () {
       String data = r'''
     <?xml version="1.0" encoding="UTF-8"?>
     <rss version="2.0>
@@ -40,7 +40,7 @@ void main() {
     </rss>
     ''';
 
-      expect(() => parse(data, strict: true), throwsArgumentError);
+      expect(() => parse(data, strict: true), throwsFormatException);
     });
 
     test('Throws ArgumentError if channel link missing', () {

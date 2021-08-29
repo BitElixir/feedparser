@@ -14,6 +14,7 @@ class FeedItem {
   final String comments;
   final String itunesSummary;
   final String itunesDuration;
+  final String contentEncoded;
 
   FeedItem({
     this.title,
@@ -27,6 +28,7 @@ class FeedItem {
     this.comments,
     this.itunesSummary,
     this.itunesDuration,
+    this.contentEncoded,
   });
 
   factory FeedItem.fromXml(xml.XmlElement node, bool strict) {
@@ -91,6 +93,11 @@ class FeedItem {
       itunesDuration = node.findElements('itunes:duration').single.text;
     } catch (e) {}
 
+    String contentEncoded;
+    try {
+      contentEncoded = node.findElements('content:encoded').single.text;
+    } catch (e) {}
+
     return new FeedItem(
       title: title,
       link: link,
@@ -103,6 +110,7 @@ class FeedItem {
       comments: comments,
       itunesSummary: itunesSummary,
       itunesDuration: itunesDuration,
+      contentEncoded: contentEncoded,
     );
   }
 
@@ -118,6 +126,7 @@ class FeedItem {
       comments: $comments
       itunes:summary: $itunesSummary
       itunes:duration: $itunesDuration
+      content:encoded: $contentEncoded
       enclosure: $enclosure
       ''';
   }

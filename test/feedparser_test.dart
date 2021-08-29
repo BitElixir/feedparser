@@ -201,6 +201,7 @@ void main() {
           <comments>commentsUrl</comments>
           <itunes:summary>itunesSummary</itunes:summary>
           <itunes:duration>itunesDuration</itunes:duration>
+          <content:encoded>contentEncoded</content:encoded>
           <enclosure url="enclosureUrl" type="enclosureType" length="enclosureLength"/>
         </item>
       </channel>
@@ -232,6 +233,7 @@ void main() {
           comments: 'commentsUrl',
           itunesSummary: 'itunesSummary',
           itunesDuration: 'itunesDuration',
+          contentEncoded: 'contentEncoded',
           enclosure: new FeedEnclosure(
             'enclosureUrl',
             'enclosureLength',
@@ -264,6 +266,7 @@ void main() {
     expect(result.items[0].comments, expected.items[0].comments);
     expect(result.items[0].itunesSummary, expected.items[0].itunesSummary);
     expect(result.items[0].itunesDuration, expected.items[0].itunesDuration);
+    expect(result.items[0].contentEncoded, expected.items[0].contentEncoded);
     expect(result.items[0].enclosure.url, expected.items[0].enclosure.url);
     expect(
         result.items[0].enclosure.length, expected.items[0].enclosure.length);
